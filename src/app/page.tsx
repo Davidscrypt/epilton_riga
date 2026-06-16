@@ -1,0 +1,487 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import {
+  BadgeCheck,
+  ChevronDown,
+  Clock,
+  Flower2,
+  Heart,
+  Instagram,
+  MapPin,
+  Menu,
+  MessageCircle,
+  Phone,
+  Scissors,
+  Sparkles,
+  Star,
+  Waves,
+  X,
+} from "lucide-react";
+import { fallbackContent, type Lang } from "@/data/fallbackContent";
+import { loadGoogleSheetsContent, type SiteContent } from "@/lib/googleSheets";
+
+const sectionIds = ["home", "about", "services", "prices", "specialists", "booking", "contacts"];
+const mapEmbedUrl = "https://www.google.com/maps?q=Kurzemes%20prospekts%2015b%2C%20Riga%2C%20Latvia&output=embed";
+const icons = {
+  sparkles: Sparkles,
+  flower: Flower2,
+  hand: Scissors,
+  waves: Waves,
+  badge: BadgeCheck,
+  heart: Heart,
+};
+
+function localized<T extends Record<Lang, unknown>>(item: T, lang: Lang) {
+  return item[lang] as T[Lang];
+}
+
+function ImageBlock({
+  src,
+  alt,
+  className = "",
+}: {
+  src?: string;
+  alt: string;
+  className?: string;
+}) {
+  if (!src) {
+    return (
+      <div className={`image-placeholder is-visible ${className}`} aria-label={alt}>
+        <Sparkles size={30} />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <img
+        className={className}
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onError={(event) => {
+          event.currentTarget.style.display = "none";
+          event.currentTarget.nextElementSibling?.classList.add("is-visible");
+        }}
+      />
+      <div className={`image-placeholder ${className}`} aria-hidden="true">
+        <Sparkles size={30} />
+      </div>
+    </>
+  );
+}
+
+export default function Home() {
+  const [lang, setLang] = useState<Lang>("ru");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activePrice, setActivePrice] = useState(0);
+  const [priceMenuOpen, setPriceMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState(0);
+  const [content, setContent] = useState<SiteContent>(fallbackContent);
+
+  const labels = content.labels[lang];
+  const hero = content.hero[lang];
+  const about = content.about[lang];
+  const contacts = content.contacts[lang];
+  const activeCategory = content.priceCategories[activePrice];
+
+  const nav = useMemo(
+    () =>
+      content.nav[lang].map((label, index) => ({
+        label,
+        href: `#${sectionIds[index]}`,
+      })),
+    [content.nav, lang],
+  );
+
+  const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    let active = true;
+
+    loadGoogleSheetsContent().then((sheetsContent) => {
+      if (active) {
+        setContent(sheetsContent);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (activePrice >= content.priceCategories.length) {
+      setActivePrice(0);
+    }
+  }, [activePrice, content.priceCategories.length]);
+
+  return (
+    <main>
+      <header className="site-header">
+        <a className="logo" href="#home" aria-label="EPIL_TON Riga">
+          {content.logo.image_url ? (
+            <img
+              src={content.logo.image_url}
+              alt=""
+              onError={(event) => {
+                event.currentTarget.style.display = "none";
+              }}
+            />
+          ) : null}
+          <span>{content.logo.fallback}</span>
+        </a>
+
+        <nav className="desktop-nav" aria-label="Main">
+          {nav.map((item) => (
+            <a key={item.href} href={item.href}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="header-actions">
+          <div className="lang-switch" aria-label="Language">
+            {(["ru", "lv"] as Lang[]).map((code) => (
+              <button
+                key={code}
+                className={lang === code ? "active" : ""}
+                onClick={() => setLang(code)}
+                type="button"
+              >
+                {code.toUpperCase()}
+              </button>
+            ))}
+          </div>
+          <a className="button small" href={content.links.booking} target="_blank" rel="noreferrer">
+            {labels.book}
+          </a>
+          <button className="icon-button mobile-only" onClick={() => setMenuOpen(true)} type="button" aria-label={labels.menu}>
+            <Menu size={22} />
+          </button>
+        </div>
+
+        <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+          <div className="mobile-menu-head">
+            <span>{content.brand}</span>
+            <button className="icon-button" onClick={() => setMenuOpen(false)} type="button" aria-label={labels.close}>
+              <X size={22} />
+            </button>
+          </div>
+          {nav.map((item) => (
+            <a key={item.href} href={item.href} onClick={closeMenu}>
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </header>
+
+      <section className="hero section-band" id="home">
+        <div className="container hero-grid">
+          <div className="hero-copy">
+            <p className="eyebrow">{hero.eyebrow}</p>
+            <h1>{hero.title}</h1>
+            <h2>{hero.subtitle}</h2>
+            <p className="hero-description">{hero.description}</p>
+            <div className="tag-row">
+              {hero.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+            <div className="hero-meta">
+              <span>
+                <MapPin size={18} /> {hero.address}
+              </span>
+              <span>
+                <Star size={18} /> {hero.status}
+              </span>
+            </div>
+            <div className="hero-buttons">
+              <a className="button" href={content.links.booking} target="_blank" rel="noreferrer">
+                {hero.primary}
+              </a>
+              <a className="button ghost" href="#services">
+                {hero.secondary}
+              </a>
+            </div>
+          </div>
+          <div className="hero-media">
+            <ImageBlock src={content.hero.image_url} alt={content.brand} />
+            <div className="media-note">
+              <span>Kurzemes prospekts 15b</span>
+              <strong>{lang === "ru" ? "Уход, который ощущается спокойно" : "Kopšana ar mierīgu sajūtu"}</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="about">
+        <div className="container about-grid">
+          <div className="about-media">
+            <ImageBlock src={content.about.image_url} alt={about.title} />
+          </div>
+          <div>
+            <p className="eyebrow">{content.brand}</p>
+            <h2>{about.title}</h2>
+            {about.text.map((paragraph) => (
+              <p className="soft-text" key={paragraph}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section muted" aria-labelledby="benefits-title">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">{labels.benefits}</p>
+            <h2 id="benefits-title">{lang === "ru" ? "Почему выбирают нас" : "Kāpēc izvēlas mūs"}</h2>
+          </div>
+          <div className="benefit-grid">
+            {content.benefits.map((benefit) => {
+              const [title, text] = benefit[lang];
+              return (
+                <article className="benefit-card" key={title}>
+                  <BadgeCheck />
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="services">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">{labels.services}</p>
+            <h2>{lang === "ru" ? "Процедуры для красоты и уверенности" : "Procedūras skaistumam un pārliecībai"}</h2>
+          </div>
+          <div className="service-grid">
+            {content.services.map((service) => {
+              const item = localized(service, lang) as { title: string; description: string; price: string };
+              const serviceBookingUrl = (service as typeof service & { booking_url?: string }).booking_url;
+              const Icon = icons[service.icon as keyof typeof icons];
+              return (
+                <article className="service-card" key={item.title}>
+                  <div className="service-image">
+                    <ImageBlock src={service.image_url} alt={item.title} />
+                  </div>
+                  <div className="service-body">
+                    <Icon className="service-icon" />
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <div className="card-foot">
+                      <strong>{item.price}</strong>
+                      <a href={serviceBookingUrl || content.links.booking} target="_blank" rel="noreferrer">
+                        {labels.book}
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section muted" id="prices">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">{labels.prices}</p>
+            <h2>{lang === "ru" ? "Актуальные услуги и цены" : "Aktuālie pakalpojumi un cenas"}</h2>
+          </div>
+          <div className="price-shell">
+            <button
+              className="price-mobile-toggle"
+              type="button"
+              onClick={() => setPriceMenuOpen((open) => !open)}
+              aria-expanded={priceMenuOpen}
+              aria-controls="price-categories"
+            >
+              <span>{lang === "ru" ? "Выберите категорию" : "Izvēlieties kategoriju"}</span>
+              <strong>{activeCategory[lang]}</strong>
+              <ChevronDown size={20} />
+            </button>
+            <div className="price-tabs" id="price-categories" role="tablist" aria-label={labels.prices}>
+              {content.priceCategories.map((category, index) => (
+                <button
+                  key={category.ru}
+                  className={activePrice === index ? "active" : ""}
+                  onClick={() => {
+                    setActivePrice(index);
+                    setPriceMenuOpen(false);
+                  }}
+                  type="button"
+                  role="tab"
+                  aria-selected={activePrice === index}
+                >
+                  {category[lang]}
+                </button>
+              ))}
+            </div>
+            <div className="price-list">
+              {activeCategory.items.map((priceItem) => {
+                const [ruName, lvName, price, duration, bookingUrl] = priceItem as [
+                  string,
+                  string,
+                  string,
+                  string,
+                  string?,
+                ];
+                return (
+                <div className="price-row" key={`${ruName}-${duration}`}>
+                  <div>
+                    <h3>{lang === "ru" ? ruName : lvName}</h3>
+                    <span>
+                      <Clock size={16} /> {duration}
+                    </span>
+                  </div>
+                  <strong>{price}</strong>
+                  <a className="button tiny" href={bookingUrl || content.links.booking} target="_blank" rel="noreferrer">
+                    {labels.book}
+                  </a>
+                </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="specialists">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">{labels.specialists}</p>
+            <h2>{lang === "ru" ? "Мастера студии" : "Studijas meistari"}</h2>
+          </div>
+          <div className="specialist-grid">
+            {content.specialists.map((specialist) => {
+              const item = localized(specialist, lang) as { name: string; position: string; description: string };
+              const specialistBookingUrl = (specialist as typeof specialist & { booking_url?: string }).booking_url;
+              return (
+                <article className="specialist-card" key={item.name}>
+                  <div className="specialist-photo">
+                    <ImageBlock src={specialist.image_url} alt={item.name} />
+                  </div>
+                  <div>
+                    <span>{item.position}</span>
+                    <h3>{item.name}</h3>
+                    <p>{item.description}</p>
+                    <a href={specialistBookingUrl || content.links.booking} target="_blank" rel="noreferrer">
+                      {labels.book}
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section muted" id="booking">
+        <div className="container faq-grid">
+          <div>
+            <p className="eyebrow">{labels.faq}</p>
+            <h2>{lang === "ru" ? "Ответы перед визитом" : "Atbildes pirms vizītes"}</h2>
+          </div>
+          <div className="faq-list">
+            {content.faq.map((faq, index) => {
+              const [question, answer] = faq[lang];
+              const opened = openFaq === index;
+              return (
+                <article className={`faq-item ${opened ? "open" : ""}`} key={question}>
+                  <button type="button" onClick={() => setOpenFaq(opened ? -1 : index)}>
+                    {question}
+                    <ChevronDown size={20} />
+                  </button>
+                  <p>{answer}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section contact-section" id="contacts">
+        <div className="container contact-grid">
+          <div>
+            <p className="eyebrow">{contacts.title}</p>
+            <h2>{contacts.subtitle}</h2>
+            <div className="contact-list">
+              <a href={content.links.maps} target="_blank" rel="noreferrer">
+                <MapPin /> {content.contacts.address}
+              </a>
+              <a href={content.links.whatsapp} target="_blank" rel="noreferrer">
+                <Phone /> {contacts.phoneLabel}: {content.contacts.phone}
+              </a>
+              <a href={content.links.instagram} target="_blank" rel="noreferrer">
+                <Instagram /> {content.contacts.instagram}
+              </a>
+            </div>
+            <div className="hero-buttons">
+              <a className="button" href={content.links.booking} target="_blank" rel="noreferrer">
+                {contacts.bookButton}
+              </a>
+              <a className="button ghost" href={content.links.maps} target="_blank" rel="noreferrer">
+                {contacts.mapButton}
+              </a>
+            </div>
+          </div>
+          <div className="map-card">
+            <iframe
+              title="EPIL_TON Riga Google Map"
+              src={mapEmbedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <div className="container footer-grid">
+          <div>
+            <a className="logo footer-logo" href="#home">
+              <span>{content.brand}</span>
+            </a>
+            <p>{contacts.footerText}</p>
+          </div>
+          <div>
+            <h3>{labels.menu}</h3>
+            {nav.slice(0, 5).map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </div>
+          <div>
+            <h3>{labels.services}</h3>
+            {content.services.slice(0, 5).map((service) => (
+              <a key={service[lang].title} href="#services">
+                {service[lang].title}
+              </a>
+            ))}
+          </div>
+          <div>
+            <h3>{labels.follow}</h3>
+            <div className="socials">
+              <a href={content.links.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
+                <Instagram />
+              </a>
+              <a href={content.links.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp">
+                <MessageCircle />
+              </a>
+              <a href={content.links.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
+                f
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  );
+}
