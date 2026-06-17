@@ -72,6 +72,17 @@ function ImageBlock({
   );
 }
 
+function FacebookIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M14.4 8.3h2.4V5h-3c-3.1 0-4.8 1.8-4.8 5v2H6.2v3.4H9V22h3.6v-6.6h3l.6-3.4h-3.6v-1.7c0-1.3.5-2 1.8-2Z"
+      />
+    </svg>
+  );
+}
+
 export default function Home() {
   const [lang, setLang] = useState<Lang>("ru");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -476,7 +487,7 @@ export default function Home() {
                 <MessageCircle />
               </a>
               <a href={content.links.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
-                f
+                <FacebookIcon />
               </a>
             </div>
           </div>

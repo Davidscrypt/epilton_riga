@@ -105,6 +105,10 @@ function setting(rows: CsvRow[], key: string) {
   return rows.find((row) => row.key === key)?.value?.trim();
 }
 
+function normalizeWhatsappUrl(value: string) {
+  return value.replace("wa.me/20654575", "wa.me/37120654575");
+}
+
 function applySettings(content: SiteContent, rows: CsvRow[]) {
   const booking = setting(rows, "booking_url") || setting(rows, "booking") || content.links.booking;
   const instagram = setting(rows, "instagram_url") || content.links.instagram;
@@ -119,7 +123,7 @@ function applySettings(content: SiteContent, rows: CsvRow[]) {
   content.brand = brand;
   content.links.booking = booking || DEFAULT_BOOKING_URL;
   content.links.instagram = instagram;
-  content.links.whatsapp = whatsapp;
+  content.links.whatsapp = normalizeWhatsappUrl(whatsapp);
   content.links.facebook = facebook;
   content.links.maps = maps;
   content.logo.image_url = logo;

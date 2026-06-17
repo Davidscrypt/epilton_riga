@@ -53,7 +53,7 @@ key,value
 brand,EPIL_TON Riga
 booking_url,https://dikidi.net/1941764?p=0.pi
 instagram_url,https://www.instagram.com/epil_ton_riga/
-whatsapp_url,https://wa.me/20654575
+whatsapp_url,https://wa.me/37120654575
 facebook_url,https://www.facebook.com/share/1EuQs84EwG/?mibextid=wwXIfr
 maps_url,https://www.google.com/maps/search/?api=1&query=Kurzemes%20prospekts%2015b%2C%20Riga%2C%20Latvia
 address,"Kurzemes prospekts 15b, Riga, Latvia"

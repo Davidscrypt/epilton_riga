@@ -7,7 +7,7 @@ export const fallbackContent = {
   links: {
     booking: "https://dikidi.net/1941764?p=0.pi",
     instagram: "https://www.instagram.com/epil_ton_riga/",
-    whatsapp: "https://wa.me/20654575",
+    whatsapp: "https://wa.me/37120654575",
     facebook: "https://www.facebook.com/share/1EuQs84EwG/?mibextid=wwXIfr",
     maps:
       "https://www.google.com/maps/search/?api=1&query=Kurzemes%20prospekts%2015b%2C%20Riga%2C%20Latvia",
