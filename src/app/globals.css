@@ -492,10 +492,6 @@ h1 {
   background: var(--blush);
 }
 
-.service-image img {
-  object-fit: contain;
-}
-
 .service-body {
   display: flex;
   flex: 1;
