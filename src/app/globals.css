@@ -492,6 +492,19 @@ h1 {
   background: var(--blush);
 }
 
+.service-image--vela_body,
+.service-image--vela_face {
+  height: 300px;
+}
+
+.service-image--vela_body img {
+  object-position: center 42%;
+}
+
+.service-image--vela_face img {
+  object-position: center 35%;
+}
+
 .service-body {
   display: flex;
   flex: 1;
@@ -1121,6 +1134,11 @@ h1 {
 
   .service-image {
     height: 220px;
+  }
+
+  .service-image--vela_body,
+  .service-image--vela_face {
+    height: 280px;
   }
 
   .service-body {
