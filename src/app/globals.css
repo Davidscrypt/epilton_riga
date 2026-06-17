@@ -109,21 +109,27 @@ input {
 
 .header-actions {
   gap: 12px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .lang-switch {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 82px;
+  flex: 0 0 82px;
   padding: 3px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.82);
   box-shadow: 0 6px 18px rgba(126, 82, 96, 0.08);
+  overflow: hidden;
 }
 
 .lang-switch button {
   height: 29px;
+  min-width: 0;
+  padding: 0;
   border: 0;
   border-radius: 999px;
   background: transparent;
@@ -905,14 +911,26 @@ h1 {
   .site-header {
     min-height: 64px;
     padding: 0 14px;
+    gap: 10px;
   }
 
   .logo {
     font-size: 19px;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .header-actions {
+    gap: 8px;
   }
 
   .lang-switch {
-    width: 76px;
+    width: 92px;
+    flex-basis: 92px;
+  }
+
+  .icon-button {
+    flex: 0 0 42px;
   }
 
   .section,
