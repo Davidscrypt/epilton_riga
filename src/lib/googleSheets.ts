@@ -210,7 +210,7 @@ function buildServices(rows: CsvRow[], fallback: SiteContent["services"], global
     return {
       id: cardId,
       icon: fallbackItem.icon,
-      image_url: text(row?.image_url, fallbackItem.image_url),
+      image_url: fallbackItem.image_url,
       booking_url: text(row?.booking_url, globalBookingUrl),
       ru: {
         title: fallbackItem.ru.title,
