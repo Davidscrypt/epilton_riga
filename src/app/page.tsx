@@ -292,10 +292,9 @@ export default function Home() {
             {content.services.map((service) => {
               const item = localized(service, lang) as { title: string; description: string; price: string };
               const serviceBookingUrl = (service as typeof service & { booking_url?: string }).booking_url;
-              const serviceId = "id" in service ? service.id : item.title.toLowerCase().replace(/\s+/g, "-");
               return (
                 <article className="service-card" key={item.title}>
-                  <div className={`service-image service-image--${serviceId}`}>
+                  <div className="service-image">
                     <ImageBlock src={service.image_url} alt={item.title} />
                   </div>
                   <div className="service-body">
