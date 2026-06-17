@@ -5,17 +5,13 @@ import {
   BadgeCheck,
   ChevronDown,
   Clock,
-  Flower2,
-  Heart,
   Instagram,
   MapPin,
   Menu,
   MessageCircle,
   Phone,
-  Scissors,
   Sparkles,
   Star,
-  Waves,
   X,
 } from "lucide-react";
 import { fallbackContent, type Lang } from "@/data/fallbackContent";
@@ -24,15 +20,6 @@ import type { MouseEvent } from "react";
 
 const sectionIds = ["home", "about", "services", "prices", "specialists", "booking", "contacts"];
 const mapEmbedUrl = "https://www.google.com/maps?q=Kurzemes%20prospekts%2015b%2C%20Riga%2C%20Latvia&output=embed";
-const icons = {
-  sparkles: Sparkles,
-  flower: Flower2,
-  hand: Scissors,
-  waves: Waves,
-  badge: BadgeCheck,
-  heart: Heart,
-};
-
 function localized<T extends Record<Lang, unknown>>(item: T, lang: Lang) {
   return item[lang] as T[Lang];
 }
@@ -305,14 +292,12 @@ export default function Home() {
             {content.services.map((service) => {
               const item = localized(service, lang) as { title: string; description: string; price: string };
               const serviceBookingUrl = (service as typeof service & { booking_url?: string }).booking_url;
-              const Icon = icons[service.icon as keyof typeof icons];
               return (
                 <article className="service-card" key={item.title}>
                   <div className="service-image">
                     <ImageBlock src={service.image_url} alt={item.title} />
                   </div>
                   <div className="service-body">
-                    <Icon className="service-icon" />
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
                     <div className="card-foot">

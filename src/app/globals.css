@@ -446,13 +446,11 @@ h1 {
   padding: 24px;
 }
 
-.benefit-card svg,
-.service-icon {
+.benefit-card svg {
   color: var(--rose-dark);
 }
 
-.benefit-card > svg,
-.service-icon {
+.benefit-card > svg {
   width: 42px;
   height: 42px;
   padding: 10px;
