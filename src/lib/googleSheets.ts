@@ -213,14 +213,14 @@ function buildServices(rows: CsvRow[], fallback: SiteContent["services"], global
       image_url: fallbackItem.image_url,
       booking_url: text(row?.booking_url, globalBookingUrl),
       ru: {
-        title: fallbackItem.ru.title,
-        description: fallbackItem.ru.description,
-        price: fallbackItem.ru.price,
+        title: text(row?.title_ru, fallbackItem.ru.title),
+        description: text(row?.description_ru, fallbackItem.ru.description),
+        price: text(row?.price_ru, fallbackItem.ru.price),
       },
       lv: {
-        title: fallbackItem.lv.title,
-        description: fallbackItem.lv.description,
-        price: fallbackItem.lv.price,
+        title: text(row?.title_lv, fallbackItem.lv.title),
+        description: text(row?.description_lv, fallbackItem.lv.description),
+        price: text(row?.price_lv, fallbackItem.lv.price),
       },
     };
   }) as SiteContent["services"];
