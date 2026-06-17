@@ -193,26 +193,34 @@ function buildServices(rows: CsvRow[], fallback: SiteContent["services"], global
   const activeRows = rows.filter(isActive).sort(byOrder);
   if (!activeRows.length) return fallback;
 
-  return activeRows.map((row, index) => {
-    const fallbackItem = fallback[index] || fallback[0];
-    const isLegacyVelaCard =
-      fallbackItem.icon === "waves" &&
-      fallbackItem.ru.title.toLowerCase().includes("лица") &&
-      (row.title_ru || "").toLowerCase().includes("vela shape 5 in 1");
+  const rowsById = new Map(activeRows.map((row) => [row.id, row]));
+  const sheetIdsByCardId: Record<string, string[]> = {
+    laser: ["laser"],
+    massage: ["massage"],
+    vela_body: ["vela_body", "intro"],
+    waxing: ["waxing"],
+    vela_face: ["vela_face", "vela"],
+    sets: ["sets"],
+  };
+
+  return fallback.map((fallbackItem) => {
+    const cardId = "id" in fallbackItem ? fallbackItem.id : "";
+    const row = sheetIdsByCardId[cardId]?.map((id) => rowsById.get(id)).find(Boolean);
 
     return {
+      id: cardId,
       icon: fallbackItem.icon,
-      image_url: text(row.image_url, fallbackItem.image_url),
-      booking_url: text(row.booking_url, globalBookingUrl),
+      image_url: text(row?.image_url, fallbackItem.image_url),
+      booking_url: text(row?.booking_url, globalBookingUrl),
       ru: {
-        title: isLegacyVelaCard ? fallbackItem.ru.title : text(row.title_ru, fallbackItem.ru.title),
-        description: isLegacyVelaCard ? fallbackItem.ru.description : text(row.description_ru, fallbackItem.ru.description),
-        price: isLegacyVelaCard ? fallbackItem.ru.price : text(row.price_ru, fallbackItem.ru.price),
+        title: fallbackItem.ru.title,
+        description: fallbackItem.ru.description,
+        price: fallbackItem.ru.price,
       },
       lv: {
-        title: isLegacyVelaCard ? fallbackItem.lv.title : text(row.title_lv, fallbackItem.lv.title),
-        description: isLegacyVelaCard ? fallbackItem.lv.description : text(row.description_lv, fallbackItem.lv.description),
-        price: isLegacyVelaCard ? fallbackItem.lv.price : text(row.price_lv, fallbackItem.lv.price),
+        title: fallbackItem.lv.title,
+        description: fallbackItem.lv.description,
+        price: fallbackItem.lv.price,
       },
     };
   }) as SiteContent["services"];

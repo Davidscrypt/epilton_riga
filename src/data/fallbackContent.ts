@@ -98,6 +98,7 @@ export const fallbackContent = {
   ],
   services: [
     {
+      id: "laser",
       icon: "sparkles",
       image_url:
         "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85",
@@ -114,11 +115,44 @@ export const fallbackContent = {
       },
     },
     {
+      id: "massage",
+      icon: "hand",
+      image_url:
+        "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=85",
+      ru: {
+        title: "Классический массаж",
+        description: "Классические процедуры для лица, спины и всего тела.",
+        price: "от 25 €",
+      },
+      lv: {
+        title: "Klasiskā masāža",
+        description: "Klasiskas procedūras sejai, mugurai un visam ķermenim.",
+        price: "no 25 €",
+      },
+    },
+    {
+      id: "vela_body",
+      icon: "waves",
+      image_url:
+        "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&q=85",
+      ru: {
+        title: "Вела шейп - тело",
+        description: "Аппаратная процедура для коррекции тела и тонуса кожи.",
+        price: "от 25 €",
+      },
+      lv: {
+        title: "Vela Shape ķermenim",
+        description: "Aparātprocedūra ķermeņa korekcijai un ādas tonusam.",
+        price: "no 25 €",
+      },
+    },
+    {
+      id: "waxing",
       icon: "flower",
       image_url:
         "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=900&q=85",
       ru: {
-        title: "Ваксинг",
+        title: "Ваксация",
         description: "Быстрый и аккуратный способ удаления волос с длительным результатом.",
         price: "от 5 €",
       },
@@ -129,26 +163,12 @@ export const fallbackContent = {
       },
     },
     {
-      icon: "hand",
-      image_url:
-        "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=85",
-      ru: {
-        title: "Массаж",
-        description: "Классические и расслабляющие процедуры для лица, спины и всего тела.",
-        price: "от 25 €",
-      },
-      lv: {
-        title: "Masāža",
-        description: "Klasiskas un relaksējošas procedūras sejai, mugurai un visam ķermenim.",
-        price: "no 25 €",
-      },
-    },
-    {
+      id: "vela_face",
       icon: "waves",
       image_url:
         "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85",
       ru: {
-        title: "Vela Shape лица",
+        title: "Вела шейп - лицо",
         description: "RF-лифтинг и вакуумная процедура для зоны лица, шеи и декольте.",
         price: "от 30 €",
       },
@@ -159,11 +179,12 @@ export const fallbackContent = {
       },
     },
     {
+      id: "sets",
       icon: "badge",
       image_url:
         "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=900&q=85",
       ru: {
-        title: "Выгодные комплексы",
+        title: "Выгодные комплекты",
         description: "Специальные наборы процедур по приятной цене и с экономией.",
         price: "Выгодно",
       },
@@ -171,21 +192,6 @@ export const fallbackContent = {
         title: "Izdevīgi komplekti",
         description: "Īpaši procedūru komplekti par izdevīgu cenu.",
         price: "Izdevīgi",
-      },
-    },
-    {
-      icon: "heart",
-      image_url:
-        "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&q=85",
-      ru: {
-        title: "Знакомство с мастером",
-        description: "Первый визит и ознакомительные процедуры для комфортного начала.",
-        price: "от 20 €",
-      },
-      lv: {
-        title: "Iepazīšanās ar meistari",
-        description: "Pirmais apmeklējums un iepazīšanās procedūras komfortablam sākumam.",
-        price: "no 20 €",
       },
     },
   ],
