@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { fallbackContent, type Lang } from "@/data/fallbackContent";
 import { loadGoogleSheetsContent, type SiteContent } from "@/lib/googleSheets";
+import type { MouseEvent } from "react";
 
 const sectionIds = ["home", "about", "services", "prices", "specialists", "booking", "contacts"];
 const mapEmbedUrl = "https://www.google.com/maps?q=Kurzemes%20prospekts%2015b%2C%20Riga%2C%20Latvia&output=embed";
@@ -108,6 +109,30 @@ export default function Home() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith("#")) {
+      return;
+    }
+
+    const target = document.querySelector<HTMLElement>(href);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    closeMenu();
+
+    const headerOffset = document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 0;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+
+    window.history.pushState(null, "", href);
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
     let active = true;
 
@@ -131,7 +156,12 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="logo" href="#home" aria-label="EPIL_TON Riga">
+        <a
+          className="logo"
+          href="#home"
+          aria-label="EPIL_TON Riga"
+          onClick={(event) => handleAnchorClick(event, "#home")}
+        >
           {content.logo.image_url ? (
             <img
               src={content.logo.image_url}
@@ -146,7 +176,7 @@ export default function Home() {
 
         <nav className="desktop-nav" aria-label="Main">
           {nav.map((item) => (
-            <a key={item.href} href={item.href}>
+            <a key={item.href} href={item.href} onClick={(event) => handleAnchorClick(event, item.href)}>
               {item.label}
             </a>
           ))}
@@ -181,7 +211,7 @@ export default function Home() {
             </button>
           </div>
           {nav.map((item) => (
-            <a key={item.href} href={item.href} onClick={closeMenu}>
+            <a key={item.href} href={item.href} onClick={(event) => handleAnchorClick(event, item.href)}>
               {item.label}
             </a>
           ))}
@@ -212,7 +242,7 @@ export default function Home() {
               <a className="button" href={content.links.booking} target="_blank" rel="noreferrer">
                 {hero.primary}
               </a>
-              <a className="button ghost" href="#services">
+              <a className="button ghost" href="#services" onClick={(event) => handleAnchorClick(event, "#services")}>
                 {hero.secondary}
               </a>
             </div>
@@ -456,7 +486,7 @@ export default function Home() {
       <footer className="footer">
         <div className="container footer-grid">
           <div>
-            <a className="logo footer-logo" href="#home">
+            <a className="logo footer-logo" href="#home" onClick={(event) => handleAnchorClick(event, "#home")}>
               <span>{content.brand}</span>
             </a>
             <p>{contacts.footerText}</p>
@@ -464,7 +494,7 @@ export default function Home() {
           <div>
             <h3>{labels.menu}</h3>
             {nav.slice(0, 5).map((item) => (
-              <a key={item.href} href={item.href}>
+              <a key={item.href} href={item.href} onClick={(event) => handleAnchorClick(event, item.href)}>
                 {item.label}
               </a>
             ))}
@@ -472,7 +502,11 @@ export default function Home() {
           <div>
             <h3>{labels.services}</h3>
             {content.services.slice(0, 5).map((service) => (
-              <a key={service[lang].title} href="#services">
+              <a
+                key={service[lang].title}
+                href="#services"
+                onClick={(event) => handleAnchorClick(event, "#services")}
+              >
                 {service[lang].title}
               </a>
             ))}
