@@ -159,7 +159,7 @@ export default function Home() {
         <a
           className="logo"
           href="#home"
-          aria-label="EPIL_TON Riga"
+          aria-label="EPIL_TON"
           onClick={(event) => handleAnchorClick(event, "#home")}
         >
           {content.logo.image_url ? (
@@ -474,7 +474,7 @@ export default function Home() {
           </div>
           <div className="map-card">
             <iframe
-              title="EPIL_TON Riga Google Map"
+              title="EPIL_TON Google Map"
               src={mapEmbedUrl}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

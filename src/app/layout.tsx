@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: fallbackContent.seo.ru.title,
     description: fallbackContent.seo.ru.description,
     url: "https://epil-ton-riga.local",
-    siteName: "EPIL_TON Riga",
+    siteName: "EPIL_TON",
     locale: "ru_LV",
     type: "website",
   },

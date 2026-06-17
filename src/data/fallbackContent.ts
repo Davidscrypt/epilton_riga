@@ -3,7 +3,7 @@ export type Lang = "ru" | "lv";
 type Localized = Record<Lang, string>;
 
 export const fallbackContent = {
-  brand: "EPIL_TON Riga",
+  brand: "EPIL_TON",
   links: {
     booking: "https://dikidi.net/1941764?p=0.pi",
     instagram: "https://www.instagram.com/epil_ton_riga/",
@@ -14,7 +14,7 @@ export const fallbackContent = {
   },
   logo: {
     image_url: "",
-    fallback: "EPIL_TON Riga",
+    fallback: "EPIL_TON",
   },
   nav: {
     ru: ["Главная", "О студии", "Услуги", "Цены", "Специалисты", "Запись", "Контакты"],
@@ -22,14 +22,14 @@ export const fallbackContent = {
   } satisfies Record<Lang, string[]>,
   seo: {
     ru: {
-      title: "EPIL_TON Riga — лазерная эпиляция, массаж и ваксинг в Риге",
+      title: "EPIL_TON — лазерная эпиляция, массаж и ваксинг в Риге",
       description:
-        "Студия EPIL_TON Riga предлагает лазерную эпиляцию, массаж, Vela Shape и ваксинг по адресу Kurzemes prospekts 15b, Riga.",
+        "Студия EPIL_TON предлагает лазерную эпиляцию, массаж, Vela Shape и ваксинг по адресу Kurzemes prospekts 15b, Riga.",
     },
     lv: {
-      title: "EPIL_TON Riga — lāzerepilācija, masāža un vaksācija Rīgā",
+      title: "EPIL_TON — lāzerepilācija, masāža un vaksācija Rīgā",
       description:
-        "EPIL_TON Riga studija piedāvā lāzerepilāciju, masāžu, Vela Shape un vaksāciju adresē Kurzemes prospekts 15b, Riga.",
+        "EPIL_TON studija piedāvā lāzerepilāciju, masāžu, Vela Shape un vaksāciju adresē Kurzemes prospekts 15b, Riga.",
     },
   },
   hero: {
@@ -37,7 +37,7 @@ export const fallbackContent = {
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85",
     ru: {
       eyebrow: "Премиальная студия красоты",
-      title: "EPIL_TON Riga",
+      title: "EPIL_TON",
       subtitle: "Студия ухода за телом и восстановлением в Риге",
       description:
         "Лазерная эпиляция, ваксинг, массаж и процедуры для тела в комфортной студии.",
@@ -49,7 +49,7 @@ export const fallbackContent = {
     },
     lv: {
       eyebrow: "Premium skaistuma studija",
-      title: "EPIL_TON Riga",
+      title: "EPIL_TON",
       subtitle: "Ķermeņa kopšanas un atjaunošanas studija Rīgā",
       description:
         "Lāzerepilācija, vaksācija, masāža un ķermeņa procedūras komfortablā studijā.",
@@ -66,14 +66,14 @@ export const fallbackContent = {
     ru: {
       title: "О студии",
       text: [
-        "EPIL_TON Riga — пространство заботы о теле, красоте и восстановлении. Здесь сочетаются эстетика, комфорт и индивидуальный подход.",
+        "EPIL_TON — пространство заботы о теле, красоте и восстановлении. Здесь сочетаются эстетика, комфорт и индивидуальный подход.",
         "Мы помогаем ухаживать за собой через современные процедуры, внимательный сервис и спокойную атмосферу. Каждый визит — это время для себя, красоты и уверенности.",
       ],
     },
     lv: {
       title: "Par studiju",
       text: [
-        "EPIL_TON Riga ir ķermeņa kopšanas, skaistuma un atjaunošanās telpa. Šeit apvienojas estētika, komforts un individuāla pieeja.",
+        "EPIL_TON ir ķermeņa kopšanas, skaistuma un atjaunošanās telpa. Šeit apvienojas estētika, komforts un individuāla pieeja.",
         "Mēs palīdzam rūpēties par sevi ar mūsdienīgām procedūrām, uzmanīgu servisu un mierīgu atmosfēru. Katrs apmeklējums ir laiks sev, skaistumam un pārliecībai.",
       ],
     },
@@ -387,7 +387,7 @@ export const fallbackContent = {
     address: "Kurzemes prospekts 15b, Riga, Latvia",
     phone: "+371 20654575",
     instagram: "@epil_ton_riga",
-    facebook: "EPIL_TON Riga",
+    facebook: "EPIL_TON",
   },
   labels: {
     ru: {

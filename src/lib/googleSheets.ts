@@ -97,8 +97,12 @@ function byOrder(a: CsvRow, b: CsvRow) {
   return Number(a.order || 0) - Number(b.order || 0);
 }
 
+function normalizeBrandName(value: string) {
+  return value.replaceAll("EPIL_TON Riga", "EPIL_TON");
+}
+
 function text(value: string | undefined, fallback: string) {
-  return value && value.trim() ? value.trim() : fallback;
+  return normalizeBrandName(value && value.trim() ? value.trim() : fallback);
 }
 
 function setting(rows: CsvRow[], key: string) {
@@ -116,7 +120,7 @@ function applySettings(content: SiteContent, rows: CsvRow[]) {
   const facebook = setting(rows, "facebook_url") || content.links.facebook;
   const maps = setting(rows, "maps_url") || content.links.maps;
   const logo = setting(rows, "logo_image_url") || content.logo.image_url;
-  const brand = setting(rows, "brand") || content.brand;
+  const brand = normalizeBrandName(setting(rows, "brand") || content.brand);
   const phone = setting(rows, "phone") || content.contacts.phone;
   const address = setting(rows, "address") || content.contacts.address;
 

@@ -8,7 +8,7 @@
 
 ```tsv
 key	value
-brand	EPIL_TON Riga
+brand	EPIL_TON
 booking_url	https://dikidi.net/1941764?p=0.pi
 instagram_url	https://www.instagram.com/epil_ton_riga/
 whatsapp_url	https://wa.me/37120654575
@@ -139,7 +139,7 @@ prepare	5	true	Как подготовиться к процедуре?	Kā saga
 ```tsv
 section	key	value_ru	value_lv
 hero	eyebrow	Премиальная студия красоты	Premium skaistuma studija
-hero	title	EPIL_TON Riga	EPIL_TON Riga
+hero	title	EPIL_TON	EPIL_TON
 hero	subtitle	Студия ухода за телом и восстановлением в Риге	Ķermeņa kopšanas un atjaunošanas studija Rīgā
 hero	description	Лазерная эпиляция, ваксинг, массаж и процедуры для тела в комфортной студии.	Lāzerepilācija, vaksācija, masāža un ķermeņa procedūras komfortablā studijā.
 hero	status	Запись открыта	Pieraksts ir atvērts
@@ -148,7 +148,7 @@ hero	secondary	Смотреть услуги	Skatīt pakalpojumus
 hero	tags	Массаж, Vela Shape, Лазерная эпиляция, Ваксинг	Masāža, Vela Shape, Lāzerepilācija, Vaksācija
 hero	image_url	https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85	
 about	title	О студии	Par studiju
-about	text_1	EPIL_TON Riga — пространство заботы о теле, красоте и восстановлении. Здесь сочетаются эстетика, комфорт и индивидуальный подход.	EPIL_TON Riga ir ķermeņa kopšanas, skaistuma un atjaunošanās telpa. Šeit apvienojas estētika, komforts un individuāla pieeja.
+about	text_1	EPIL_TON — пространство заботы о теле, красоте и восстановлении. Здесь сочетаются эстетика, комфорт и индивидуальный подход.	EPIL_TON ir ķermeņa kopšanas, skaistuma un atjaunošanās telpa. Šeit apvienojas estētika, komforts un individuāla pieeja.
 about	text_2	Мы помогаем ухаживать за собой через современные процедуры, внимательный сервис и спокойную атмосферу. Каждый визит — это время для себя, красоты и уверенности.	Mēs palīdzam rūpēties par sevi ar mūsdienīgām procedūrām, uzmanīgu servisu un mierīgu atmosfēru. Katrs apmeklējums ir laiks sev, skaistumam un pārliecībai.
 about	image_url	https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1100&q=85	
 contacts	title	Контакты	Kontakti
