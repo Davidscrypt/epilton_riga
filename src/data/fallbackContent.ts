@@ -101,7 +101,7 @@ export const fallbackContent = {
       id: "laser",
       icon: "sparkles",
       image_url:
-        "/images/services/laser.webp",
+        "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85",
       ru: {
         title: "Лазерная эпиляция",
         description:
@@ -118,7 +118,7 @@ export const fallbackContent = {
       id: "massage",
       icon: "hand",
       image_url:
-        "/images/services/massage.webp",
+        "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=85",
       ru: {
         title: "Классический массаж",
         description: "Классические процедуры для лица, спины и всего тела.",
@@ -134,7 +134,7 @@ export const fallbackContent = {
       id: "vela_body",
       icon: "waves",
       image_url:
-        "/images/services/vela-body.webp",
+        "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&q=85",
       ru: {
         title: "Вела шейп - тело",
         description: "Аппаратная процедура для коррекции тела и тонуса кожи.",
@@ -150,7 +150,7 @@ export const fallbackContent = {
       id: "waxing",
       icon: "flower",
       image_url:
-        "/images/services/waxing.webp",
+        "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=900&q=85",
       ru: {
         title: "Ваксация",
         description: "Быстрый и аккуратный способ удаления волос с длительным результатом.",
@@ -166,7 +166,7 @@ export const fallbackContent = {
       id: "vela_face",
       icon: "waves",
       image_url:
-        "/images/services/vela-face.webp",
+        "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85",
       ru: {
         title: "Вела шейп - лицо",
         description: "RF-лифтинг и вакуумная процедура для зоны лица, шеи и декольте.",
@@ -182,7 +182,7 @@ export const fallbackContent = {
       id: "sets",
       icon: "badge",
       image_url:
-        "/images/services/sets.webp",
+        "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=900&q=85",
       ru: {
         title: "Выгодные комплекты",
         description: "Специальные наборы процедур по приятной цене и с экономией.",

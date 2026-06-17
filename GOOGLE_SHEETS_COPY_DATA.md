@@ -25,12 +25,12 @@ logo_image_url
 
 ```tsv
 id	order	is_active	title_ru	title_lv	description_ru	description_lv	price_ru	price_lv	image_url	booking_url
-laser	1	true	Лазерная эпиляция	Lāzerepilācija	Современное решение для гладкой кожи и комфортного удаления нежелательных волос.	Mūsdienīgs risinājums gludai ādai un komfortablai nevēlama apmatojuma noņemšanai.	от 20 €	no 20 €	/images/services/laser.webp
-massage	2	true	Классический массаж	Klasiskā masāža	Классические процедуры для лица, спины и всего тела.	Klasiskas procedūras sejai, mugurai un visam ķermenim.	от 25 €	no 25 €	/images/services/massage.webp
-vela_body	3	true	Вела шейп - тело	Vela Shape ķermenim	Аппаратная процедура для коррекции тела и тонуса кожи.	Aparātprocedūra ķermeņa korekcijai un ādas tonusam.	от 25 €	no 25 €	/images/services/vela-body.webp
-waxing	4	true	Ваксация	Vaksācija	Быстрый и аккуратный способ удаления волос с длительным результатом.	Ātrs un precīzs matiņu noņemšanas veids ar ilgstošu rezultātu.	от 5 €	no 5 €	/images/services/waxing.webp
-vela_face	5	true	Вела шейп - лицо	Vela Shape sejai	RF-лифтинг и вакуумная процедура для зоны лица, шеи и декольте.	RF liftings un vakuuma procedūra sejas, kakla un dekoltē zonai.	от 30 €	no 30 €	/images/services/vela-face.webp
-sets	6	true	Выгодные комплекты	Izdevīgi komplekti	Специальные наборы процедур по приятной цене и с экономией.	Īpaši procedūru komplekti par izdevīgu cenu.	Выгодно	Izdevīgi	/images/services/sets.webp
+laser	1	true	Лазерная эпиляция	Lāzerepilācija	Современное решение для гладкой кожи и комфортного удаления нежелательных волос.	Mūsdienīgs risinājums gludai ādai un komfortablai nevēlama apmatojuma noņemšanai.	от 20 €	no 20 €	https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85	
+massage	2	true	Классический массаж	Klasiskā masāža	Классические процедуры для лица, спины и всего тела.	Klasiskas procedūras sejai, mugurai un visam ķermenim.	от 25 €	no 25 €	https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=85
+vela_body	3	true	Вела шейп - тело	Vela Shape ķermenim	Аппаратная процедура для коррекции тела и тонуса кожи.	Aparātprocedūra ķermeņa korekcijai un ādas tonusam.	от 25 €	no 25 €	https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&q=85
+waxing	4	true	Ваксация	Vaksācija	Быстрый и аккуратный способ удаления волос с длительным результатом.	Ātrs un precīzs matiņu noņemšanas veids ar ilgstošu rezultātu.	от 5 €	no 5 €	https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=900&q=85
+vela_face	5	true	Вела шейп - лицо	Vela Shape sejai	RF-лифтинг и вакуумная процедура для зоны лица, шеи и декольте.	RF liftings un vakuuma procedūra sejas, kakla un dekoltē zonai.	от 30 €	no 30 €	https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85
+sets	6	true	Выгодные комплекты	Izdevīgi komplekti	Специальные наборы процедур по приятной цене и с экономией.	Īpaši procedūru komplekti par izdevīgu cenu.	Выгодно	Izdevīgi	https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=900&q=85
 ```
 
 ## PriceList
