@@ -228,7 +228,7 @@ function buildServices(rows: CsvRow[], fallback: SiteContent["services"], global
 
 function buildPriceList(rows: CsvRow[], fallback: SiteContent["priceCategories"], globalBookingUrl: string) {
   const activeRows = rows.filter(isActive).sort(byOrder);
-  if (!activeRows.length) return fallback;
+  if (!activeRows.length) return combineSetCategories(fallback);
 
   const categories = new Map<
     string,
@@ -293,7 +293,64 @@ function buildPriceList(rows: CsvRow[], fallback: SiteContent["priceCategories"]
     }
   });
 
-  return mergedCategories as SiteContent["priceCategories"];
+  return combineSetCategories(mergedCategories as SiteContent["priceCategories"]);
+}
+
+const PRICE_SECTION_PREFIX = "__section__:";
+
+function sectionRow(ru: string, lv: string): [string, string, string, string, string] {
+  return [`${PRICE_SECTION_PREFIX}${ru}`, `${PRICE_SECTION_PREFIX}${lv}`, "", "", ""];
+}
+
+function cleanCategoryName(value: string) {
+  return value.trim().toLowerCase();
+}
+
+export function combineSetCategories(categories: SiteContent["priceCategories"]) {
+  const rules = [
+    {
+      targets: ["лазерная эпиляция"],
+      sources: ["комплекты лазерной эпиляции"],
+      section: ["Комплекты", "Komplekti"] as const,
+    },
+    {
+      targets: ["массаж"],
+      sources: ["комплекты массажа"],
+      section: ["Комплекты", "Komplekti"] as const,
+    },
+    {
+      targets: ["ваксация", "ваксинг"],
+      sources: ["комплекты ваксации", "комплекты ваксинга"],
+      section: ["Комплекты", "Komplekti"] as const,
+    },
+  ];
+
+  const nextCategories = categories.map((category) => ({
+    ...category,
+    ru: category.ru === "Ваксинг" ? "Ваксация" : category.ru,
+    items: [...category.items],
+  }));
+  const removed = new Set<number>();
+
+  rules.forEach((rule) => {
+    const targetIndex = nextCategories.findIndex((category) => rule.targets.includes(cleanCategoryName(category.ru)));
+    if (targetIndex === -1) return;
+
+    const sourceIndexes = nextCategories
+      .map((category, index) => ({ category, index }))
+      .filter(({ category, index }) => index !== targetIndex && rule.sources.includes(cleanCategoryName(category.ru)))
+      .map(({ index }) => index);
+
+    sourceIndexes.forEach((sourceIndex) => {
+      const sourceItems = nextCategories[sourceIndex].items;
+      if (!sourceItems.length) return;
+
+      nextCategories[targetIndex].items.push(sectionRow(rule.section[0], rule.section[1]), ...sourceItems);
+      removed.add(sourceIndex);
+    });
+  });
+
+  return nextCategories.filter((_, index) => !removed.has(index)) as SiteContent["priceCategories"];
 }
 
 function buildSpecialists(rows: CsvRow[], fallback: SiteContent["specialists"], globalBookingUrl: string) {
@@ -352,6 +409,9 @@ export async function loadGoogleSheetsContent(): Promise<SiteContent> {
     return content;
   } catch (error) {
     console.warn("Google Sheets content is unavailable. Using fallbackContent.", error);
-    return fallbackContent;
+    return {
+      ...fallbackContent,
+      priceCategories: combineSetCategories(fallbackContent.priceCategories),
+    };
   }
 }

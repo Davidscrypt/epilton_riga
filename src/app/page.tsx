@@ -15,11 +15,16 @@ import {
   X,
 } from "lucide-react";
 import { fallbackContent, type Lang } from "@/data/fallbackContent";
-import { loadGoogleSheetsContent, type SiteContent } from "@/lib/googleSheets";
+import { combineSetCategories, loadGoogleSheetsContent, type SiteContent } from "@/lib/googleSheets";
 import type { MouseEvent } from "react";
 
 const sectionIds = ["home", "about", "services", "prices", "specialists", "booking", "contacts"];
 const mapEmbedUrl = "https://www.google.com/maps?q=Kurzemes%20prospekts%2015b%2C%20Riga%2C%20Latvia&output=embed";
+const initialContent = {
+  ...fallbackContent,
+  priceCategories: combineSetCategories(fallbackContent.priceCategories),
+} as SiteContent;
+
 function localized<T extends Record<Lang, unknown>>(item: T, lang: Lang) {
   return item[lang] as T[Lang];
 }
@@ -77,7 +82,7 @@ export default function Home() {
   const [activePrice, setActivePrice] = useState(0);
   const [priceMenuOpen, setPriceMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
-  const [content, setContent] = useState<SiteContent>(fallbackContent);
+  const [content, setContent] = useState<SiteContent>(initialContent);
 
   const labels = content.labels[lang];
   const hero = content.hero[lang];
@@ -358,6 +363,15 @@ export default function Home() {
                   string,
                   string?,
                 ];
+                const isSection = ruName.startsWith("__section__:");
+                if (isSection) {
+                  return (
+                    <div className="price-subheading" key={`${ruName}-${lvName}`}>
+                      {lang === "ru" ? ruName.replace("__section__:", "") : lvName.replace("__section__:", "")}
+                    </div>
+                  );
+                }
+
                 return (
                 <div className="price-row" key={`${ruName}-${duration}`}>
                   <div>

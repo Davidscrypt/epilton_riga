@@ -580,6 +580,16 @@ h1 {
   gap: 12px;
 }
 
+.price-subheading {
+  margin: 8px 0 0;
+  padding: 8px 4px 2px;
+  color: var(--rose-dark);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
 .price-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 96px 132px;
