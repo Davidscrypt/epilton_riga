@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { IconCalendarCheck, IconHomeHeart, IconSparkles, IconUserCheck } from "@tabler/icons-react";
 import {
-  BadgeCheck,
   ChevronDown,
   Clock,
   Instagram,
@@ -24,6 +24,7 @@ const initialContent = {
   ...fallbackContent,
   priceCategories: combineSetCategories(fallbackContent.priceCategories),
 } as SiteContent;
+const benefitIcons = [IconUserCheck, IconHomeHeart, IconSparkles, IconCalendarCheck];
 
 function localized<T extends Record<Lang, unknown>>(item: T, lang: Lang) {
   return item[lang] as T[Lang];
@@ -274,11 +275,17 @@ export default function Home() {
             <h2 id="benefits-title">{lang === "ru" ? "Почему выбирают нас" : "Kāpēc izvēlas mūs"}</h2>
           </div>
           <div className="benefit-grid">
-            {content.benefits.map((benefit) => {
+            {content.benefits.map((benefit, index) => {
               const [title, text] = benefit[lang];
+              const BenefitIcon = benefitIcons[index] || IconSparkles;
               return (
                 <article className="benefit-card" key={title}>
-                  <BadgeCheck />
+                  <div className="benefit-card-head">
+                    <span className="benefit-icon">
+                      <BenefitIcon size={22} stroke={1.7} />
+                    </span>
+                    <span className="benefit-number">{String(index + 1).padStart(2, "0")}</span>
+                  </div>
                   <h3>{title}</h3>
                   <p>{text}</p>
                 </article>
