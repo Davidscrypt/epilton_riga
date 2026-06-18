@@ -23,12 +23,36 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   background:
     linear-gradient(180deg, #fffaf8 0%, #fbf3f5 42%, #fffaf8 100%);
   color: var(--ink);
   font-family: var(--font-sans), Arial, sans-serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(135deg, rgba(207, 159, 178, 0.22) 0%, rgba(255, 250, 248, 0) 34%),
+    linear-gradient(225deg, rgba(239, 215, 223, 0.42) 0%, rgba(255, 250, 248, 0) 38%),
+    linear-gradient(315deg, rgba(248, 241, 236, 0.64) 0%, rgba(251, 243, 245, 0) 46%),
+    repeating-linear-gradient(115deg, rgba(154, 102, 120, 0.025) 0 1px, transparent 1px 18px);
+  opacity: 0.95;
+}
+
+main {
+  position: relative;
+  isolation: isolate;
 }
 
 a {
