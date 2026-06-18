@@ -98,6 +98,7 @@ intro_bikini,intro,Знакомство с мастером,Iepazīšanās ar me
 intro_underarms,intro,Знакомство с мастером,Iepazīšanās ar meistari,3,true,Первый визит на подмышки,Pirmās apmeklējums paduses,20 EUR,20 min,
 laser_set_1,laser_sets,Комплекты лазерной эпиляции,Lāzerepilācijas komplekti,10,true,Глубокое бикини + межъягодичная зона + подмышки,Dziļais bikini + sēžas intīmā zona + paduses,85 EUR,45 min,
 laser_set_2,laser_sets,Комплекты лазерной эпиляции,Lāzerepilācijas komplekti,11,true,Глубокое бикини + межъягодичная зона + подмышки + голени,Dziļais bikini + sēžas intīmā zona + paduses + apakšstilbi,125 EUR,1 h 10 min,
+massage_glow_relax,massage_sets,Комплекты массажа,Masāžas komplekti,19,true,Glow & Relax: массаж спины + массаж лица и декольте с маской,Glow & Relax: muguras masāža + sejas un dekoltē masāža ar masku,55 EUR,1 h 15 min,https://dikidi.net/1941764?p=1.pi-ssm-sd&s=22164721&rl=0_0
 massage_total_relax,massage_sets,Комплекты массажа,Masāžas komplekti,20,true,Total relax: массаж тела + массаж лица и декольте с маской,Total relax: ķermeņa masāža + sejas un dekoltē masāža ar masku,69 EUR,1 h 40 min,
 wax_set_l,wax_sets,Комплекты ваксинга,Vaksācijas komplekti,30,true,Комплект L: подмышки + глубокое бикини + ноги полностью,Komplekts L: paduses + dziļais bikini + kājas visā garumā,55 EUR,1 h 10 min,
 laser_legs,laser,Лазерная эпиляция,Lāzerepilācija,40,true,Ноги полностью,Kājas visā garumā,85 EUR,35 min,

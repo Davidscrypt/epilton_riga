@@ -51,6 +51,7 @@ laser_set_5	laser_sets	Комплекты лазерной эпиляции	Lāz
 laser_set_6	laser_sets	Комплекты лазерной эпиляции	Lāzerepilācijas komplekti	15	true	Голени или бедра с коленями + подмышки	Apakšstilbi vai augšstilbi ar ceļgaliem + paduses	85 EUR	40 min	
 laser_set_7	laser_sets	Комплекты лазерной эпиляции	Lāzerepilācijas komplekti	16	true	Ноги полностью + глубокое бикини + межъягодичная зона	Kājas visā garumā + dziļais bikini + sēžas intīmā zona	125 EUR	1 h 5 min	
 laser_set_8	laser_sets	Комплекты лазерной эпиляции	Lāzerepilācijas komplekti	17	true	Подмышки + классический бикини + ноги полностью	Paduses + klasiskais bikini + kājas visā garumā	120 EUR	1 h 30 min	
+massage_set_glow_relax	massage_sets	Комплекты массажа	Masāžas komplekti	19	true	Glow & Relax: массаж спины + массаж лица и декольте с маской	Glow & Relax: muguras masāža + sejas un dekoltē masāža ar masku	55 EUR	1 h 15 min	https://dikidi.net/1941764?p=1.pi-ssm-sd&s=22164721&rl=0_0
 massage_set_total_relax	massage_sets	Комплекты массажа	Masāžas komplekti	20	true	Total relax: массаж тела + массаж лица и декольте с маской	Total relax: ķermeņa masāža + sejas un dekoltē masāža ar masku	69 EUR	1 h 40 min	
 wax_set_l	wax_sets	Комплекты ваксинга	Vaksācijas komplekti	30	true	Комплект L: подмышки + глубокое бикини + ноги полностью	Komplekts L: paduses + dziļais bikini + kājas visā garumā	55 EUR	1 h 10 min	
 wax_set_m	wax_sets	Комплекты ваксинга	Vaksācijas komplekti	31	true	Комплект M: подмышки + глубокое бикини + голени	Komplekts M: paduses + dziļais bikini + apakšstilbi ar ceļgaliem	45 EUR	55 min	

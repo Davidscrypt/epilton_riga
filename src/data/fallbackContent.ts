@@ -224,6 +224,7 @@ export const fallbackContent = {
       ru: "Комплекты массажа",
       lv: "Masāžas komplekti",
       items: [
+        ["Glow & Relax: массаж спины + массаж лица и декольте с маской", "Glow & Relax: muguras masāža + sejas un dekoltē masāža ar masku", "55 EUR", "1 h 15 min", "https://dikidi.net/1941764?p=1.pi-ssm-sd&s=22164721&rl=0_0"],
         ["Total relax: массаж тела + массаж лица и декольте с маской", "Total relax: ķermeņa masāža + sejas un dekoltē masāža ar masku", "69 EUR", "1 h 40 min"],
       ],
     },
