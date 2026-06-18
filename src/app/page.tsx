@@ -149,7 +149,7 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a
-          className="logo"
+          className={`logo ${content.logo.image_url ? "logo-image" : ""}`}
           href="#home"
           aria-label="EPIL_TON"
           onClick={(event) => handleAnchorClick(event, "#home")}
@@ -162,8 +162,9 @@ export default function Home() {
                 event.currentTarget.style.display = "none";
               }}
             />
-          ) : null}
-          <span>{content.logo.fallback}</span>
+          ) : (
+            <span>{content.logo.fallback}</span>
+          )}
         </a>
 
         <nav className="desktop-nav" aria-label="Main">

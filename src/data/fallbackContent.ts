@@ -13,7 +13,7 @@ export const fallbackContent = {
       "https://www.google.com/maps/search/?api=1&query=Kurzemes%20prospekts%2015b%2C%20Riga%2C%20Latvia",
   },
   logo: {
-    image_url: "",
+    image_url: "/images/brand/epil-ton-logo.png",
     fallback: "EPIL_TON",
   },
   nav: {

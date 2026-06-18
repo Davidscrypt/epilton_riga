@@ -79,9 +79,14 @@ input {
 }
 
 .logo img {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
+}
+
+.logo-image img {
+  width: 54px;
+  height: 54px;
 }
 
 .desktop-nav {
@@ -926,6 +931,15 @@ h1 {
     font-size: 19px;
     min-width: 0;
     flex: 1 1 auto;
+  }
+
+  .logo-image {
+    flex: 0 0 auto;
+  }
+
+  .logo-image img {
+    width: 48px;
+    height: 48px;
   }
 
   .header-actions {
