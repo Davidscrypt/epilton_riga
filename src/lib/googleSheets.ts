@@ -302,6 +302,10 @@ function sectionRow(ru: string, lv: string): [string, string, string, string, st
   return [`${PRICE_SECTION_PREFIX}${ru}`, `${PRICE_SECTION_PREFIX}${lv}`, "", "", ""];
 }
 
+function isSectionRow(item: SiteContent["priceCategories"][number]["items"][number]) {
+  return item[0].startsWith(PRICE_SECTION_PREFIX);
+}
+
 function cleanCategoryName(value: string) {
   return value.trim().toLowerCase();
 }
@@ -350,7 +354,21 @@ export function combineSetCategories(categories: SiteContent["priceCategories"])
     });
   });
 
-  return nextCategories.filter((_, index) => !removed.has(index)) as SiteContent["priceCategories"];
+  const visibleCategories = nextCategories.filter((_, index) => !removed.has(index));
+
+  visibleCategories.forEach((category) => {
+    if (cleanCategoryName(category.ru) !== "vela shape лица") return;
+    if (category.items.some((item) => item[0] === `${PRICE_SECTION_PREFIX}Абонементы`)) return;
+
+    const subscriptionIndex = category.items.findIndex(
+      (item) => !isSectionRow(item) && item[0].trim().toLowerCase().startsWith("абонемент:"),
+    );
+    if (subscriptionIndex === -1) return;
+
+    category.items.splice(subscriptionIndex, 0, sectionRow("Абонементы", "Abonementi"));
+  });
+
+  return visibleCategories as SiteContent["priceCategories"];
 }
 
 function buildSpecialists(rows: CsvRow[], fallback: SiteContent["specialists"], globalBookingUrl: string) {
