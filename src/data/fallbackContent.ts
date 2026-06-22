@@ -166,7 +166,7 @@ export const fallbackContent = {
       id: "vela_face",
       icon: "waves",
       image_url:
-        "/images/services/vela-face.webp",
+        "/images/services/vela-face-treatment.jpeg",
       ru: {
         title: "Вела шейп - лицо",
         description: "RF-лифтинг и вакуумная процедура для зоны лица, шеи и декольте.",
