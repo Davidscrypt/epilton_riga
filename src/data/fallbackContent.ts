@@ -322,8 +322,7 @@ export const fallbackContent = {
   ],
   specialists: [
     {
-      image_url:
-        "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=85",
+      image_url: "/images/specialists/alina.png",
       ru: {
         name: "Алина",
         position: "Руководитель",
@@ -336,8 +335,7 @@ export const fallbackContent = {
       },
     },
     {
-      image_url:
-        "https://images.unsplash.com/photo-1594824388853-d0c2fef6d4e6?auto=format&fit=crop&w=900&q=85",
+      image_url: "/images/specialists/alena.png",
       ru: {
         name: "Алёна",
         position: "Мастер",
