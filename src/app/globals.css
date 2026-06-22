@@ -318,7 +318,6 @@ h1 {
 }
 
 .hero-media,
-.about-media,
 .map-card {
   position: relative;
   overflow: hidden;
@@ -404,23 +403,54 @@ h1 {
 
 .about-grid {
   grid-template-columns: minmax(320px, 0.84fr) minmax(0, 1fr);
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: var(--shadow-soft);
+  gap: 58px;
 }
 
 .about-media {
+  position: relative;
+  display: grid;
+  place-items: center;
   aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(239, 215, 223, 0.42), transparent 58%);
 }
 
-.about-grid > div:last-child {
-  padding: 28px;
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 14px 34px rgba(126, 82, 96, 0.07);
+.about-logo-scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(76%, 360px);
+  aspect-ratio: 1;
+}
+
+.about-logo-scene img {
+  position: relative;
+  z-index: 1;
+  width: min(68%, 260px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgba(73, 52, 58, 0.12));
+  animation: aboutLogoFloat 5.8s ease-in-out infinite;
+}
+
+.about-copy {
+  max-width: 610px;
+}
+
+.about-copy .soft-text {
+  margin-bottom: 0;
+}
+
+@keyframes aboutLogoFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-10px) scale(1.025);
+  }
 }
 
 .benefit-grid,
@@ -1166,13 +1196,38 @@ h1 {
   }
 
   .about-grid {
-    padding: 12px;
-    border-radius: 22px;
+    gap: 22px;
   }
 
-  .about-grid > div:last-child {
-    padding: 20px;
-    border-radius: 18px;
+  .about-media {
+    aspect-ratio: 1.12 / 1;
+    min-height: 250px;
+  }
+
+  .about-logo-scene {
+    width: min(82%, 300px);
+  }
+
+  .about-copy .eyebrow,
+  .about-copy h2,
+  .about-copy .soft-text {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 520ms ease,
+      transform 520ms ease;
+    transition-delay: calc(var(--reveal-index, 0) * 110ms);
+  }
+
+  .about-copy h2 {
+    transition-delay: 70ms;
+  }
+
+  .about-copy.is-visible .eyebrow,
+  .about-copy.is-visible h2,
+  .about-copy.is-visible .soft-text {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .benefit-card {
@@ -1198,5 +1253,17 @@ h1 {
 
   .footer {
     padding: 44px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-logo-scene img {
+    animation: none;
+  }
+
+  .about-copy .eyebrow,
+  .about-copy h2,
+  .about-copy .soft-text {
+    transition: none;
   }
 }

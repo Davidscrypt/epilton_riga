@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { IconCalendarCheck, IconHomeHeart, IconSparkles, IconUserCheck } from "@tabler/icons-react";
 import {
   ChevronDown,
@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { fallbackContent, type Lang } from "@/data/fallbackContent";
 import { combineSetCategories, loadGoogleSheetsContent, type SiteContent } from "@/lib/googleSheets";
-import type { MouseEvent } from "react";
+import type { CSSProperties, MouseEvent } from "react";
 
 const sectionIds = ["home", "about", "services", "prices", "specialists", "booking", "contacts"];
 const mapEmbedUrl = "https://www.google.com/maps?q=Kurzemes%20prospekts%2015b%2C%20Riga%2C%20Latvia&output=embed";
@@ -84,6 +84,8 @@ export default function Home() {
   const [priceMenuOpen, setPriceMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const [content, setContent] = useState<SiteContent>(initialContent);
+  const [aboutRevealed, setAboutRevealed] = useState(false);
+  const aboutRef = useRef<HTMLElement>(null);
 
   const labels = content.labels[lang];
   const hero = content.hero[lang];
@@ -145,6 +147,27 @@ export default function Home() {
       setActivePrice(0);
     }
   }, [activePrice, content.priceCategories.length]);
+
+  useEffect(() => {
+    const target = aboutRef.current;
+    if (!target) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAboutRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.34 },
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main>
@@ -251,16 +274,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" id="about">
+      <section className="section" id="about" ref={aboutRef}>
         <div className="container about-grid">
           <div className="about-media">
-            <ImageBlock src={content.about.image_url} alt={about.title} />
+            <div className="about-logo-scene" aria-label={content.brand}>
+              <img src={content.logo.image_url} alt={content.brand} />
+            </div>
           </div>
-          <div>
+          <div className={`about-copy ${aboutRevealed ? "is-visible" : ""}`}>
             <p className="eyebrow">{content.brand}</p>
             <h2>{about.title}</h2>
-            {about.text.map((paragraph) => (
-              <p className="soft-text" key={paragraph}>
+            {about.text.map((paragraph, index) => (
+              <p className="soft-text" key={paragraph} style={{ "--reveal-index": index } as CSSProperties}>
                 {paragraph}
               </p>
             ))}
