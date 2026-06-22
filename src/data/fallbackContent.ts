@@ -17,7 +17,7 @@ export const fallbackContent = {
     fallback: "EPIL_TON",
   },
   nav: {
-    ru: ["Главная", "О студии", "Услуги", "Цены", "Специалисты", "Запись", "Контакты"],
+    ru: ["Главная", "О студии", "Услуги", "Цены", "Специалисты", "Частые вопросы", "Контакты"],
     lv: ["Sākums", "Par studiju", "Pakalpojumi", "Cenas", "Speciālisti", "Pieraksts", "Kontakti"],
   } satisfies Record<Lang, string[]>,
   seo: {
