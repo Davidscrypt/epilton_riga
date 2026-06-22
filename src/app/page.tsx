@@ -25,6 +25,12 @@ const initialContent = {
   priceCategories: combineSetCategories(fallbackContent.priceCategories),
 } as SiteContent;
 const benefitIcons = [IconUserCheck, IconHomeHeart, IconSparkles, IconCalendarCheck];
+const introSources = {
+  mobile: "/EPIL_TON_intro_mobile.html",
+  tablet: "/EPIL_TON_intro_tablet.html",
+  laptop: "/EPIL_TON_intro_laptop.html",
+  desktop: "/EPIL_TON_intro_desktop.html",
+};
 
 function localized<T extends Record<Lang, unknown>>(item: T, lang: Lang) {
   return item[lang] as T[Lang];
@@ -85,6 +91,10 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState(0);
   const [content, setContent] = useState<SiteContent>(initialContent);
   const [aboutRevealed, setAboutRevealed] = useState(false);
+  const [introMounted, setIntroMounted] = useState(true);
+  const [introVisible, setIntroVisible] = useState(true);
+  const [introLoaded, setIntroLoaded] = useState(false);
+  const [introSrc, setIntroSrc] = useState(introSources.desktop);
   const aboutRef = useRef<HTMLElement>(null);
 
   const labels = content.labels[lang];
@@ -169,8 +179,76 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!introMounted) {
+      return;
+    }
+
+    const updateIntroSource = () => {
+      const width = window.innerWidth;
+      const nextSrc =
+        width <= 640
+          ? introSources.mobile
+          : width <= 1024
+            ? introSources.tablet
+            : width <= 1440
+              ? introSources.laptop
+              : introSources.desktop;
+
+      setIntroSrc(nextSrc);
+    };
+
+    updateIntroSource();
+    window.addEventListener("resize", updateIntroSource);
+
+    return () => window.removeEventListener("resize", updateIntroSource);
+  }, [introMounted]);
+
+  useEffect(() => {
+    if (!introLoaded) {
+      return;
+    }
+
+    const fadeTimer = window.setTimeout(() => {
+      setIntroVisible(false);
+    }, 3200);
+
+    const unmountTimer = window.setTimeout(() => {
+      setIntroMounted(false);
+      document.body.style.overflow = "";
+    }, 3900);
+
+    return () => {
+      window.clearTimeout(fadeTimer);
+      window.clearTimeout(unmountTimer);
+    };
+  }, [introLoaded]);
+
   return (
     <main>
+      {introMounted ? (
+        <div className={`intro-overlay ${introVisible ? "is-visible" : "is-hidden"}`} aria-hidden={!introVisible}>
+          <div className="intro-frame">
+            <iframe
+              src={introSrc}
+              title="EPIL_TON intro"
+              loading="eager"
+              scrolling="no"
+              onLoad={() => setIntroLoaded(true)}
+            />
+          </div>
+        </div>
+      ) : null}
+
       <header className="site-header">
         <a
           className={`logo ${content.logo.image_url ? "logo-image" : ""}`}

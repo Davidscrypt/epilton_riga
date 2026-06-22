@@ -212,6 +212,37 @@ input {
   display: none;
 }
 
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #fbf0ee;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 700ms ease,
+    visibility 700ms ease;
+}
+
+.intro-overlay.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-frame {
+  position: absolute;
+  inset: 0;
+}
+
+.intro-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  overflow: hidden;
+}
+
 .section,
 .section-band {
   padding: 68px 0;
@@ -1257,6 +1288,10 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .intro-overlay {
+    transition-duration: 160ms;
+  }
+
   .about-logo-scene img {
     animation: none;
   }
