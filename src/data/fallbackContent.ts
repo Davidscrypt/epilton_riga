@@ -18,7 +18,7 @@ export const fallbackContent = {
   },
   nav: {
     ru: ["Главная", "О студии", "Услуги", "Цены", "Специалисты", "Частые вопросы", "Контакты"],
-    lv: ["Sākums", "Par studiju", "Pakalpojumi", "Cenas", "Speciālisti", "Pieraksts", "Kontakti"],
+    lv: ["Sākums", "Par studiju", "Pakalpojumi", "Cenas", "Speciālisti", "Biežākie jautājumi", "Kontakti"],
   } satisfies Record<Lang, string[]>,
   seo: {
     ru: {
