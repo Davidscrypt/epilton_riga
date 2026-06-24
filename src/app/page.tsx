@@ -290,7 +290,7 @@ export default function Home() {
               </button>
             ))}
           </div>
-          <a className="button small" href={content.links.booking} target="_blank" rel="noreferrer">
+          <a className="button small" href="#prices" onClick={(event) => handleAnchorClick(event, "#prices")}>
             {labels.book}
           </a>
           <button className="icon-button mobile-only" onClick={() => setMenuOpen(true)} type="button" aria-label={labels.menu}>
@@ -334,7 +334,7 @@ export default function Home() {
               </span>
             </div>
             <div className="hero-buttons">
-              <a className="button" href={content.links.booking} target="_blank" rel="noreferrer">
+              <a className="button" href="#prices" onClick={(event) => handleAnchorClick(event, "#prices")}>
                 {hero.primary}
               </a>
               <a className="button ghost" href="#services" onClick={(event) => handleAnchorClick(event, "#services")}>
