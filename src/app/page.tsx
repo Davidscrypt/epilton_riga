@@ -635,6 +635,12 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className="container footer-credit">
+          <span>Website by</span>
+          <a href="https://bynarsia.com" target="_blank" rel="noreferrer">
+            bynarsia.com
+          </a>
+        </div>
       </footer>
     </main>
   );
