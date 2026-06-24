@@ -25,6 +25,7 @@ const initialContent = {
   priceCategories: combineSetCategories(fallbackContent.priceCategories),
 } as SiteContent;
 const benefitIcons = [IconUserCheck, IconHomeHeart, IconSparkles, IconCalendarCheck];
+const heroBrandImage = "/images/hero/hero-brand.png";
 const introSources = {
   mobile: "/EPIL_TON_intro_mobile.html",
   tablet: "/EPIL_TON_intro_tablet.html",
@@ -343,11 +344,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-media">
-            <ImageBlock src={content.hero.image_url} alt={content.brand} />
-            <div className="media-note">
-              <span>Kurzemes prospekts 15b</span>
-              <strong>{lang === "ru" ? "Уход, который ощущается спокойно" : "Kopšana ar mierīgu sajūtu"}</strong>
-            </div>
+            <ImageBlock src={heroBrandImage} alt={content.brand} />
           </div>
         </div>
       </section>
