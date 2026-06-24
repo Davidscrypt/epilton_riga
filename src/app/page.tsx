@@ -407,7 +407,6 @@ export default function Home() {
           <div className="service-grid">
             {content.services.map((service) => {
               const item = localized(service, lang) as { title: string; description: string; price: string };
-              const serviceBookingUrl = (service as typeof service & { booking_url?: string }).booking_url;
               return (
                 <article className="service-card" key={item.title}>
                   <div className="service-image">
@@ -418,7 +417,7 @@ export default function Home() {
                     <p>{item.description}</p>
                     <div className="card-foot">
                       <strong>{item.price}</strong>
-                      <a href={serviceBookingUrl || content.links.booking} target="_blank" rel="noreferrer">
+                      <a href="#prices" onClick={(event) => handleAnchorClick(event, "#prices")}>
                         {labels.book}
                       </a>
                     </div>
