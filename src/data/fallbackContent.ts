@@ -96,6 +96,10 @@ export const fallbackContent = {
       lv: ["Ērts pieraksts", "Elastīgs grafiks un ātra rezervācija."],
     },
   ],
+  benefitsHeading: {
+    ru: "Почему выбирают нас",
+    lv: "Kāpēc izvēlas mūs",
+  },
   services: [
     {
       id: "laser",

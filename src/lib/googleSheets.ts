@@ -175,6 +175,18 @@ function applyHomepageTexts(content: SiteContent, rows: CsvRow[]) {
   const aboutImage = rows.find((row) => row.section === "about" && row.key === "image_url");
   content.about.image_url = text(aboutImage?.value_ru || aboutImage?.value_lv, content.about.image_url);
 
+  content.labels.ru.benefits = get("benefits", "eyebrow", "ru", content.labels.ru.benefits);
+  content.labels.lv.benefits = get("benefits", "eyebrow", "lv", content.labels.lv.benefits);
+  content.benefitsHeading.ru = get("benefits", "title", "ru", content.benefitsHeading.ru);
+  content.benefitsHeading.lv = get("benefits", "title", "lv", content.benefitsHeading.lv);
+  content.benefits.forEach((benefit, index) => {
+    const section = `benefit_${index + 1}`;
+    benefit.ru[0] = get(section, "title", "ru", benefit.ru[0]);
+    benefit.lv[0] = get(section, "title", "lv", benefit.lv[0]);
+    benefit.ru[1] = get(section, "text", "ru", benefit.ru[1]);
+    benefit.lv[1] = get(section, "text", "lv", benefit.lv[1]);
+  });
+
   content.contacts.ru.title = get("contacts", "title", "ru", content.contacts.ru.title);
   content.contacts.lv.title = get("contacts", "title", "lv", content.contacts.lv.title);
   content.contacts.ru.subtitle = get("contacts", "subtitle", "ru", content.contacts.ru.subtitle);

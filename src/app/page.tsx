@@ -372,7 +372,7 @@ export default function Home() {
         <div className="container">
           <div className="section-heading">
             <p className="eyebrow">{labels.benefits}</p>
-            <h2 id="benefits-title">{lang === "ru" ? "Почему выбирают нас" : "Kāpēc izvēlas mūs"}</h2>
+            <h2 id="benefits-title">{content.benefitsHeading[lang]}</h2>
           </div>
           <div className="benefit-grid">
             {content.benefits.map((benefit, index) => {
