@@ -200,11 +200,18 @@ input {
   place-items: center;
   width: 42px;
   height: 42px;
+  padding: 0;
   border: 1px solid #ead6dd;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.86);
   color: var(--ink);
   cursor: pointer;
+  line-height: 0;
+}
+
+.icon-button svg {
+  display: block;
+  margin: auto;
 }
 
 .mobile-only,
