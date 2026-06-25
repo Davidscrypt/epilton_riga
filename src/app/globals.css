@@ -1043,7 +1043,8 @@ h1 {
 
   .site-header {
     min-height: 64px;
-    padding: 0 14px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
     gap: 10px;
   }
 
@@ -1063,7 +1064,7 @@ h1 {
   }
 
   .header-actions {
-    gap: 8px;
+    gap: 10px;
   }
 
   .lang-switch {
@@ -1072,7 +1073,9 @@ h1 {
   }
 
   .icon-button {
-    flex: 0 0 42px;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
   }
 
   .section,
