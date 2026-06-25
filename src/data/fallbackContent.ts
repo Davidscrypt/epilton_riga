@@ -395,6 +395,7 @@ export const fallbackContent = {
     },
     address: "Kurzemes prospekts 15b, Riga, Latvia",
     phone: "+371 20654575",
+    openingHours: "",
     instagram: "@epil_ton_riga",
     facebook: "EPIL_TON",
   },

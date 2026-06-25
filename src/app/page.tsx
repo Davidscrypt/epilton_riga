@@ -26,6 +26,11 @@ const initialContent = {
 } as SiteContent;
 const benefitIcons = [IconUserCheck, IconHomeHeart, IconSparkles, IconCalendarCheck];
 const heroBrandImage = "/images/hero/hero-brand.png";
+const siteUrl = "https://epilton-riga.vercel.app";
+const businessGeo = {
+  latitude: 56.9623226,
+  longitude: 24.0340146,
+};
 const introSources = {
   mobile: "/EPIL_TON_intro_mobile.html",
   tablet: "/EPIL_TON_intro_tablet.html",
@@ -84,6 +89,76 @@ function FacebookIcon() {
   );
 }
 
+function absoluteUrl(path: string) {
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+
+  return `${siteUrl}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+function buildLocalBusinessJsonLd(content: SiteContent, lang: Lang) {
+  const seo = content.seo[lang];
+  const openingHours = content.contacts.openingHours
+    .split(";")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  const sameAs = [content.links.instagram, content.links.facebook].filter(Boolean);
+  const services = content.services.map((service) => {
+    const item = localized(service, lang) as { title: string; description: string; price: string };
+
+    return {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: item.title,
+        description: item.description,
+        serviceType: item.title,
+      },
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "EUR",
+        description: item.price,
+      },
+      url: `${siteUrl}/#services`,
+    };
+  });
+
+  return {
+    "@context": "https://schema.org",
+    "@type": ["BeautySalon", "LocalBusiness"],
+    "@id": `${siteUrl}/#localbusiness`,
+    name: content.brand,
+    url: siteUrl,
+    image: absoluteUrl(heroBrandImage),
+    logo: absoluteUrl(content.logo.image_url),
+    description: seo.description,
+    telephone: content.contacts.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Kurzemes prospekts 15b",
+      addressLocality: "Riga",
+      postalCode: "LV-1067",
+      addressCountry: "LV",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: businessGeo.latitude,
+      longitude: businessGeo.longitude,
+    },
+    hasMap: content.links.maps,
+    areaServed: {
+      "@type": "City",
+      name: "Riga",
+    },
+    priceRange: "€€",
+    sameAs,
+    ...(openingHours.length ? { openingHours } : {}),
+    makesOffer: services,
+  };
+}
+
 export default function Home() {
   const [lang, setLang] = useState<Lang>("ru");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -103,6 +178,7 @@ export default function Home() {
   const about = content.about[lang];
   const contacts = content.contacts[lang];
   const activeCategory = content.priceCategories[activePrice];
+  const localBusinessJsonLd = useMemo(() => buildLocalBusinessJsonLd(content, lang), [content, lang]);
 
   const nav = useMemo(
     () =>
@@ -236,6 +312,11 @@ export default function Home() {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+
       {introMounted ? (
         <div className={`intro-overlay ${introVisible ? "is-visible" : "is-hidden"}`} aria-hidden={!introVisible}>
           <div className="intro-frame">

@@ -123,6 +123,7 @@ function applySettings(content: SiteContent, rows: CsvRow[]) {
   const brand = normalizeBrandName(setting(rows, "brand") || content.brand);
   const phone = setting(rows, "phone") || content.contacts.phone;
   const address = setting(rows, "address") || content.contacts.address;
+  const openingHours = setting(rows, "opening_hours") || content.contacts.openingHours;
 
   content.brand = brand;
   content.links.booking = booking || DEFAULT_BOOKING_URL;
@@ -134,6 +135,7 @@ function applySettings(content: SiteContent, rows: CsvRow[]) {
   content.logo.fallback = brand;
   content.contacts.phone = phone;
   content.contacts.address = address;
+  content.contacts.openingHours = openingHours;
   content.hero.ru.address = address;
   content.hero.lv.address = address;
 }
