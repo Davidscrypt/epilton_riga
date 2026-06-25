@@ -1127,8 +1127,18 @@ h1 {
   }
 
   .hero-media {
-    min-height: 300px;
+    min-height: 0;
+    aspect-ratio: auto;
+    padding: 10px;
     border-radius: 20px;
+    line-height: 0;
+  }
+
+  .hero-media img {
+    display: block;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: 15px;
   }
 
   .media-note {
