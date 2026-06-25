@@ -37,6 +37,7 @@ const introSources = {
   laptop: "/EPIL_TON_intro_laptop.html",
   desktop: "/EPIL_TON_intro_desktop.html",
 };
+const introSessionKey = "epil_ton_intro_seen";
 
 function localized<T extends Record<Lang, unknown>>(item: T, lang: Lang) {
   return item[lang] as T[Lang];
@@ -167,8 +168,8 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState(0);
   const [content, setContent] = useState<SiteContent>(initialContent);
   const [aboutRevealed, setAboutRevealed] = useState(false);
-  const [introMounted, setIntroMounted] = useState(true);
-  const [introVisible, setIntroVisible] = useState(true);
+  const [introMounted, setIntroMounted] = useState(false);
+  const [introVisible, setIntroVisible] = useState(false);
   const [introLoaded, setIntroLoaded] = useState(false);
   const [introSrc, setIntroSrc] = useState(introSources.desktop);
   const aboutRef = useRef<HTMLElement>(null);
@@ -257,13 +258,39 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    let shouldShowIntro = true;
+
+    try {
+      shouldShowIntro = window.sessionStorage.getItem(introSessionKey) !== "true";
+
+      if (shouldShowIntro) {
+        window.sessionStorage.setItem(introSessionKey, "true");
+      }
+    } catch {
+      shouldShowIntro = true;
+    }
+
+    if (!shouldShowIntro) {
+      return;
+    }
+
+    setIntroLoaded(false);
+    setIntroVisible(true);
+    setIntroMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!introMounted) {
+      return;
+    }
+
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     return () => {
       document.body.style.overflow = originalOverflow;
     };
-  }, []);
+  }, [introMounted]);
 
   useEffect(() => {
     if (!introMounted) {
@@ -301,7 +328,6 @@ export default function Home() {
 
     const unmountTimer = window.setTimeout(() => {
       setIntroMounted(false);
-      document.body.style.overflow = "";
     }, 3900);
 
     return () => {
