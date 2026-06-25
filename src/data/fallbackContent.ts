@@ -186,12 +186,12 @@ export const fallbackContent = {
       ru: {
         title: "Выгодные комплекты",
         description: "Специальные наборы процедур по приятной цене и с экономией.",
-        price: "Выгодно",
+        price: "от 55 €",
       },
       lv: {
         title: "Izdevīgi komplekti",
         description: "Īpaši procedūru komplekti par izdevīgu cenu.",
-        price: "Izdevīgi",
+        price: "no 55 €",
       },
     },
   ],
