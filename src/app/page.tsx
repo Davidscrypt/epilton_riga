@@ -38,32 +38,6 @@ const introSources = {
   desktop: "/EPIL_TON_intro_desktop.html",
 };
 
-function smoothScrollTo(targetTop: number, duration = 950) {
-  const startTop = window.scrollY;
-  const distance = targetTop - startTop;
-  const startTime = window.performance.now();
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (reduceMotion || Math.abs(distance) < 2) {
-    window.scrollTo(0, targetTop);
-    return;
-  }
-
-  const easeInOutCubic = (progress: number) =>
-    progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-  const step = (now: number) => {
-    const progress = Math.min((now - startTime) / duration, 1);
-    window.scrollTo(0, startTop + distance * easeInOutCubic(progress));
-
-    if (progress < 1) {
-      window.requestAnimationFrame(step);
-    }
-  };
-
-  window.requestAnimationFrame(step);
-}
-
 function localized<T extends Record<Lang, unknown>>(item: T, lang: Lang) {
   return item[lang] as T[Lang];
 }
@@ -235,7 +209,10 @@ export default function Home() {
     const top = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
 
     window.history.pushState(null, "", href);
-    smoothScrollTo(Math.max(0, top));
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: "smooth",
+    });
   };
 
   useEffect(() => {
